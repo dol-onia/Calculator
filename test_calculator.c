@@ -89,6 +89,42 @@ void test_multiply_zero(void) {
     TEST_ASSERT_EQUAL(0, multiply(89, 0));
 }
 
+// Division tests. Used TEST_ASSERT_FLOAT_WITHIN to catch rounding errors.
+
+void test_divide_positive(void) {
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 3.0f, divide(21, 7));
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 4.0f, divide(28, 7));
+}
+
+void test_divide_negative_and_positive(void) {
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, -5.0f, divide(50, -10));
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, -5.0f, divide(-50, 10));
+}
+
+void test_divide_negative(void) {
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 2.0f, divide(-16, -8));
+}
+
+void test_divide_by_self(void) {
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 1.0f, divide(9, 9));
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 1.0f, divide(-9, -9));
+}
+
+void test_divide_by_zero(void) {
+    TEST_ASSERT_EQUAL(INFINITY, divide(10, 0));
+    TEST_ASSERT_EQUAL(-INFINITY, divide(-10, 0));
+    TEST_ASSERT_TRUE(isnan(divide(0, 0)));
+}
+
+void test_divide_with_zero(void) {
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 0.0f, divide(0, 10));
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 0.0f, divide(0, -5));
+}
+
+void test_divide_fraction(void) {
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, 2.5f, divide(5, 2));
+    TEST_ASSERT_FLOAT_WITHIN(0.0001f, -2.5f, divide(-5, 2));
+}
 
 int main(void) {
     UNITY_BEGIN();
@@ -109,5 +145,12 @@ int main(void) {
     RUN_TEST(test_multiply_negative);
     RUN_TEST(test_multiply_negative_and_positive);
     RUN_TEST(test_multiply_zero);
+    RUN_TEST(test_divide_positive);
+    RUN_TEST(test_divide_negative);
+    RUN_TEST(test_divide_negative_and_positive);
+    RUN_TEST(test_divide_by_self);
+    RUN_TEST(test_divide_by_zero);
+    RUN_TEST(test_divide_with_zero);
+    RUN_TEST(test_divide_fraction);
     return UNITY_END();
 }

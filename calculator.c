@@ -11,6 +11,6 @@ int multiply(int a, int b) {
     return a * b;
 }
 
-double divide(int a, int b) {
-    return 0;
+float divide(int a, int b) {
+    return 1;
 }
