@@ -67,6 +67,37 @@ void test_subtract_overflow(void) {
     int result = subtract(INT_MAX, -1);
     TEST_ASSERT_TRUE(result < 0);
 }
+
+// Test multiplication cases
+
+void test_multiply_positive(void) {
+    TEST_ASSERT_EQUAL(42, multiply(6, 7));
+    TEST_ASSERT_EQUAL(42, multiply(7, 6));
+}
+
+void test_multiply_negative_and_positive(void) {
+    TEST_ASSERT_EQUAL(-50, multiply(5, -10));
+    TEST_ASSERT_EQUAL(-50, multiply(-5, 10));
+}
+
+void test_multiply_negative(void) {
+    TEST_ASSERT_EQUAL(64, multiply(-8, -8));
+}
+
+void test_multiply_zero(void) {
+    TEST_ASSERT_EQUAL(0, multiply(0, 27));
+    TEST_ASSERT_EQUAL(0, multiply(89, 0));
+}
+
+void test_multiply_overflow(void) {
+    int result = multiply(INT_MAX, 2);
+    TEST_ASSERT_TRUE(result < 1);
+}
+//I have no idea if this one works or not. May need troubleshooting
+void test_multiply_underflow(void) {
+    int result = multiply(INT_MIN, 2);
+    TEST_ASSERT_TRUE(result > 1);
+}
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_add_positive_numbers);
@@ -82,5 +113,11 @@ int main(void) {
     RUN_TEST(test_subtract_with_zero);
     RUN_TEST(test_subtract_underflow);
     RUN_TEST(test_subtract_overflow);
+    RUN_TEST(test_multiply_positive);
+    RUN_TEST(test_multiply_negative);
+    RUN_TEST(test_multiply_negative_and_positive);
+    RUN_TEST(test_multiply_zero);
+    RUN_TEST(test_multiply_overflow);
+    RUN_TEST(test_multiply_underflow);
     return UNITY_END();
 }
