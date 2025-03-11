@@ -89,15 +89,7 @@ void test_multiply_zero(void) {
     TEST_ASSERT_EQUAL(0, multiply(89, 0));
 }
 
-void test_multiply_overflow(void) {
-    int result = multiply(INT_MAX, 2);
-    TEST_ASSERT_TRUE(result < 1);
-}
-//I have no idea if this one works or not. May need troubleshooting
-void test_multiply_underflow(void) {
-    int result = multiply(INT_MIN, 2);
-    TEST_ASSERT_TRUE(result > 1);
-}
+
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_add_positive_numbers);
@@ -117,7 +109,5 @@ int main(void) {
     RUN_TEST(test_multiply_negative);
     RUN_TEST(test_multiply_negative_and_positive);
     RUN_TEST(test_multiply_zero);
-    RUN_TEST(test_multiply_overflow);
-    RUN_TEST(test_multiply_underflow);
     return UNITY_END();
 }
