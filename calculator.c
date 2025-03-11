@@ -12,5 +12,5 @@ int multiply(int a, int b) {
 }
 
 float divide(int a, int b) {
-    return 1;
+    return (float)a / b;
 }
